@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M Khoirul Irsyad - Programmer Portfolio</title>
+    <title>M Khoirul Irsyad - Portfolio & CV</title>
     <style>
         * {
             margin: 0;
@@ -19,6 +19,75 @@
             overflow-x: hidden;
         }
 
+        /* Toggle Switch */
+        .view-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: #1a1a1a;
+            padding: 10px;
+            border-radius: 50px;
+            border: 2px solid #00ff88;
+            display: flex;
+            gap: 10px;
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .toggle-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            background: transparent;
+            color: #888;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .toggle-btn.active {
+            background: linear-gradient(135deg, #00ff88, #00ccff);
+            color: #0a0a0a;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+        }
+
+        .toggle-btn:hover:not(.active) {
+            color: #00ff88;
+        }
+
+        /* Views Container */
+        .view-container {
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .view {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========== PORTFOLIO STYLES ========== */
+        .portfolio-view {
+            font-family: 'Courier New', monospace;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -28,7 +97,7 @@
         /* Header */
         header {
             background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
-            padding: 80px 0;
+            padding: 100px 0 80px;
             text-align: center;
             border-bottom: 2px solid #00ff88;
             position: relative;
@@ -117,7 +186,7 @@
             padding: 15px 0;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 99;
             border-bottom: 1px solid #00ff88;
         }
 
@@ -329,8 +398,344 @@
             border-top: 1px solid #00ff88;
         }
 
+        /* ========== CV STYLES ========== */
+        .cv-view {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .cv-container {
+            max-width: 900px;
+            margin: 80px auto 20px;
+            background: white;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: 300px 1fr;
+        }
+
+        .sidebar {
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 40px 30px;
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00ff88, #00ccff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 60px;
+            font-weight: bold;
+            color: #1a1a2e;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #00ff88;
+        }
+
+        .profile-title {
+            font-size: 14px;
+            color: #b0b0b0;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00ff88;
+            color: #00ff88;
+        }
+
+        .cv-contact-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .cv-contact-icon {
+            font-size: 16px;
+            min-width: 20px;
+        }
+
+        .cv-contact-text {
+            font-size: 13px;
+            color: #e0e0e0;
+            word-break: break-word;
+        }
+
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        .skill-name {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #e0e0e0;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-level {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff88, #00ccff);
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #e0e0e0;
+        }
+
+        .language-level {
+            color: #00ff88;
+        }
+
+        .main-content {
+            padding: 40px;
+        }
+
+        .cv-header {
+            margin-bottom: 40px;
+        }
+
+        .cv-header h1 {
+            font-size: 36px;
+            color: #1a1a2e;
+            margin-bottom: 10px;
+            text-shadow: none;
+        }
+
+        .cv-header h2 {
+            font-size: 20px;
+            color: #00ff88;
+            font-weight: normal;
+            margin-bottom: 20px;
+        }
+
+        .cv-header h2::after {
+            display: none;
+        }
+
+        .summary {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        .content-section {
+            margin-bottom: 35px;
+        }
+
+        .content-section h3 {
+            font-size: 22px;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #00ff88;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cv-experience-item,
+        .education-item,
+        .cv-project-item {
+            margin-bottom: 25px;
+            padding-left: 20px;
+            border-left: 3px solid #e0e0e0;
+            position: relative;
+        }
+
+        .cv-experience-item::before,
+        .education-item::before,
+        .cv-project-item::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 5px;
+            width: 11px;
+            height: 11px;
+            background: #00ff88;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .item-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1a1a2e;
+        }
+
+        .item-date {
+            font-size: 13px;
+            color: #00ff88;
+            font-weight: 600;
+        }
+
+        .item-company {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .item-description {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .cv-tech-tag {
+            background: #f0f0f0;
+            color: #1a1a2e;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .cv-skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .skill-category {
+            background: #f8f8f8;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #00ff88;
+        }
+
+        .skill-category h4 {
+            color: #1a1a2e;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .skill-badge {
+            background: white;
+            color: #555;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #00ff88, #00ccff);
+            color: #1a1a2e;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.3);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .print-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 255, 136, 0.4);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
+            .view-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 8px;
+            }
+
+            .toggle-btn {
+                padding: 10px 15px;
+                font-size: 12px;
+            }
+
+            .cv-container {
+                grid-template-columns: 1fr;
+                margin-top: 80px;
+            }
+
+            .sidebar {
+                padding: 30px 20px;
+            }
+
+            .main-content {
+                padding: 30px 20px;
+            }
+
+            .cv-skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cv-header h1 {
+                font-size: 28px;
+            }
+
+            .print-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+
             h1 {
                 font-size: 2em;
             }
@@ -345,7 +750,7 @@
             }
 
             header {
-                padding: 50px 0;
+                padding: 100px 0 50px;
             }
 
             section {
@@ -353,220 +758,555 @@
             }
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeIn 0.6s ease-out;
-        }
-
-        /* Cursor blink */
-        .cursor {
-            animation: blink 1s infinite;
-        }
-
         @keyframes blink {
             0%, 50% { opacity: 1; }
             51%, 100% { opacity: 0; }
         }
+
+        .cursor {
+            animation: blink 1s infinite;
+        }
+
+        @media print {
+            .view-toggle,
+            .print-btn {
+                display: none;
+            }
+
+            .cv-view {
+                padding: 0;
+            }
+
+            .cv-container {
+                margin: 0;
+                box-shadow: none;
+            }
+
+            body {
+                background: white;
+            }
+
+            .sidebar {
+                background: #1a1a2e;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .skill-level {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="terminal-header fade-in">
-                <div class="terminal-top">
-                    <div class="terminal-btn"></div>
-                    <div class="terminal-btn"></div>
-                    <div class="terminal-btn"></div>
+    <!-- Toggle Switch -->
+    <div class="view-toggle">
+        <button class="toggle-btn active" onclick="switchView('portfolio')">🌐 Portfolio</button>
+        <button class="toggle-btn" onclick="switchView('cv')">📄 CV</button>
+    </div>
+
+    <div class="view-container">
+        <!-- PORTFOLIO VIEW -->
+        <div class="view portfolio-view active">
+            <header>
+                <div class="container">
+                    <div class="terminal-header">
+                        <div class="terminal-top">
+                            <div class="terminal-btn"></div>
+                            <div class="terminal-btn"></div>
+                            <div class="terminal-btn"></div>
+                        </div>
+                        <div class="terminal-text">
+                            <div><span class="prompt">$</span> <span class="output">whoami</span></div>
+                            <div><span class="prompt">></span> <span class="output">M Khoirul Irsyad</span></div>
+                            <div><span class="prompt">$</span> <span class="output">cat role.txt</span></div>
+                            <div><span class="prompt">></span> <span class="output">Full Stack Developer | Mobile App Developer | Network Engineer</span></div>
+                            <div><span class="prompt">$</span> <span class="output">echo $STATUS</span></div>
+                            <div><span class="prompt">></span> <span class="output">Ready to build amazing applications<span class="cursor">_</span></span></div>
+                        </div>
+                    </div>
+                    <p class="subtitle">D1 Graduate - Wearnes Education Center Malang</p>
                 </div>
-                <div class="terminal-text">
-                    <div><span class="prompt">$</span> <span class="output">whoami</span></div>
-                    <div><span class="prompt">></span> <span class="output">M Khoirul Irsyad</span></div>
-                    <div><span class="prompt">$</span> <span class="output">cat role.txt</span></div>
-                    <div><span class="prompt">></span> <span class="output">Full Stack Developer | Mobile App Developer</span></div>
-                    <div><span class="prompt">$</span> <span class="output">echo $STATUS</span></div>
-                    <div><span class="prompt">></span> <span class="output">Ready to build amazing applications<span class="cursor">_</span></span></div>
+            </header>
+
+            <nav>
+                <ul>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <section id="skills">
+                <div class="container">
+                    <h2>// Technical Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <h3>Backend Development</h3>
+                            <div class="skill-tags">
+                                <span class="tag">Laravel</span>
+                                <span class="tag">CodeIgniter</span>
+                                <span class="tag">Node.js</span>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <h3>Frontend Development</h3>
+                            <div class="skill-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">React</span>
+                                <span class="tag">Ionic</span>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <h3>Mobile Development</h3>
+                            <div class="skill-tags">
+                                <span class="tag">React Native</span>
+                                <span class="tag">Ionic</span>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <h3>Network Engineering</h3>
+                            <div class="skill-tags">
+                                <span class="tag">Mikrotik</span>
+                                <span class="tag">OLT</span>
+                                <span class="tag">Router Config</span>
+                                <span class="tag">Network Setup</span>
+                            </div>
+                        </div>
+                        <div class="skill-card">
+                            <h3>Game Development</h3>
+                            <div class="skill-tags">
+                                <span class="tag">Construct 2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="experience">
+                <div class="container">
+                    <h2>// Work Experience</h2>
+                    <div class="experience-item">
+                        <h3>Angkasa Teknologi Nusantara</h3>
+                        <div class="experience-date">2022 - Present</div>
+                        <p>Founder & Lead Developer | Mengembangkan berbagai aplikasi custom untuk klien dari berbagai industri. Mengelola tim development dan memastikan kualitas serta ketepatan waktu delivery projek. Juga menangani setup jaringan untuk klien termasuk konfigurasi Mikrotik, OLT, dan router.</p>
+                    </div>
+                    <div class="experience-item">
+                        <h3>Basmallah Club</h3>
+                        <div class="experience-date">2021 - 2022</div>
+                        <p>Web Developer | Mengembangkan sistem kasir berbasis web untuk toko retail Basmallah Sidogiri. Sistem mencakup manajemen inventory, transaksi penjualan, dan reporting.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects">
+                <div class="container">
+                    <h2>// Portfolio Projects</h2>
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <h3>Web Kasir Basmallah</h3>
+                            <p>Sistem Point of Sale (POS) berbasis web untuk toko retail Basmallah Sidogiri. Fitur lengkap mulai dari kasir, inventory management, hingga laporan penjualan real-time.</p>
+                            <div class="project-tech">
+                                <span class="tech-badge">Laravel</span>
+                                <span class="tech-badge">MySQL</span>
+                                <span class="tech-badge">JavaScript</span>
+                                <span class="tech-badge">Bootstrap</span>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <h3>Custom ERP System</h3>
+                            <p>Aplikasi Enterprise Resource Planning untuk klien Angkasa Teknologi Nusantara. Mengintegrasikan berbagai modul bisnis dalam satu platform terpadu.</p>
+                            <div class="project-tech">
+                                <span class="tech-badge">CodeIgniter</span>
+                                <span class="tech-badge">React</span>
+                                <span class="tech-badge">PostgreSQL</span>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <h3>Mobile Delivery App</h3>
+                            <p>Aplikasi mobile untuk layanan delivery dengan fitur tracking real-time, payment gateway integration, dan push notification.</p>
+                            <div class="project-tech">
+                                <span class="tech-badge">React Native</span>
+                                <span class="tech-badge">Node.js</span>
+                                <span class="tech-badge">MongoDB</span>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <h3>Network Infrastructure Setup</h3>
+                            <p>Setup dan konfigurasi jaringan untuk perusahaan dengan Mikrotik RouterOS, OLT untuk fiber optic distribution, dan manajemen bandwidth untuk 100+ user.</p>
+                            <div class="project-tech">
+                                <span class="tech-badge">Mikrotik</span>
+                                <span class="tech-badge">OLT</span>
+                                <span class="tech-badge">Fiber Optic</span>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <h3>E-Learning Platform</h3>
+                            <p>Platform pembelajaran online dengan sistem manajemen kursus, video streaming, quiz interaktif, dan progress tracking untuk siswa.</p>
+                            <div class="project-tech">
+                                <span class="tech-badge">Laravel</span>
+                                <span class="tech-badge">Vue.js</span>
+                                <span class="tech-badge">MySQL</span>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <h3>Restaurant Management System</h3>
+                            <p>Sistem manajemen restoran lengkap dengan modul pemesanan, dapur, kasir, dan inventory. Tersedia versi web dan mobile.</p>
+                            <div class="project-tech">
+                                <span class="tech-badge">CodeIgniter</span>
+                                <span class="tech-badge">Ionic</span>
+                                <span class="tech-badge">MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact">
+                <div class="container">
+                    <h2>// Get In Touch</h2>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div>
+                                <strong>Email</strong><br>
+                                <span style="color: #888;">khoiruldev@email.com</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">💼</div>
+                            <div>
+                                <strong>Company</strong><br>
+                                <span style="color: #888;">Angkasa Teknologi Nusantara</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <strong>Location</strong><br>
+                                <span style="color: #888;">Malang, Indonesia</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer>
+                <div class="container">
+                    <p>&copy; 2025 M Khoirul Irsyad. Built with passion and caffeine.</p>
+                    <p style="margin-top: 10px; color: #00ff88;">System.out.println("Thanks for visiting!");</p>
+                </div>
+            </footer>
+        </div>
+
+        <!-- CV VIEW -->
+        <div class="view cv-view">
+            <div class="cv-container">
+                <!-- Left Sidebar -->
+                <div class="sidebar">
+                    <div class="profile-section">
+                        <div class="profile-img">MK</div>
+                        <div class="profile-name">M Khoirul Irsyad</div>
+                        <div class="profile-title">Full Stack Developer</div>
+                    </div>
+
+                    <div class="section-title">📞 KONTAK</div>
+                    <div class="cv-contact-item">
+                        <div class="cv-contact-icon">📧</div>
+                        <div class="cv-contact-text">khoiruldev@email.com</div>
+                    </div>
+                    <div class="cv-contact-item">
+                        <div class="cv-contact-icon">📱</div>
+                        <div class="cv-contact-text">+62 812-3456-7890</div>
+                    </div>
+                    <div class="cv-contact-item">
+                        <div class="cv-contact-icon">📍</div>
+                        <div class="cv-contact-text">Malang, Jawa Timur, Indonesia</div>
+                    </div>
+                    <div class="cv-contact-item">
+                        <div class="cv-contact-icon">💼</div>
+                        <div class="cv-contact-text">linkedin.com/in/khoirulirsyad</div>
+                    </div>
+                    <div class="cv-contact-item">
+                        <div class="cv-contact-icon">🌐</div>
+                        <div class="cv-contact-text">github.com/khoirulirsyad</div>
+                    </div>
+
+                    <div class="section-title" style="margin-top: 30px;">🎯 KEAHLIAN TEKNIS</div>
+                    <div class="skill-item">
+                        <div class="skill-name">Laravel</div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">CodeIgniter</div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">React / React Native</div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">JavaScript</div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Mikrotik</div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Network Setup</div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 75%"></div>
+                        </div>
+                    </div>
+
+                    <div class="section-title" style="margin-top: 30px;">🗣️ BAHASA</div>
+                    <div class="language-item">
+                        <span>Bahasa Indonesia</span>
+                        <span class="language-level">Native</span>
+                    </div>
+                    <div class="language-item">
+                        <span>English</span>
+                        <span class="language-level">Professional</span>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="main-content">
+                    <div class="cv-header">
+                        <h1>M KHOIRUL IRSYAD</h1>
+                        <h2>Full Stack Developer | Mobile App Developer | Network Engineer</h2>
+                        <p class="summary">
+                            Full Stack Developer berpengalaman dengan keahlian dalam membangun aplikasi web dan mobile yang robust dan scalable. Memiliki pengalaman 4+ tahun dalam mengembangkan solusi digital untuk berbagai industri. Founder dari Angkasa Teknologi Nusantara, fokus pada pengembangan aplikasi custom untuk klien dengan standar kualitas tinggi. Juga memiliki keahlian dalam network engineering termasuk konfigurasi Mikrotik, OLT, dan router.
+                        </p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>💼 PENGALAMAN KERJA</h3>
+                        
+                        <div class="cv-experience-item">
+                            <div class="item-header">
+                                <div class="item-title">Founder & Lead Developer</div>
+                                <div class="item-date">2022 - Sekarang</div>
+                            </div>
+                            <div class="item-company">Angkasa Teknologi Nusantara</div>
+                            <div class="item-description">
+                                • Memimpin tim development dalam menggarap projek aplikasi custom dari berbagai klien<br>
+                                • Mengembangkan sistem ERP, e-commerce, dan aplikasi mobile untuk berbagai industri<br>
+                                • Melakukan setup dan konfigurasi jaringan menggunakan Mikrotik, OLT, dan router<br>
+                                • Melakukan analisis kebutuhan klien dan merancang solusi teknis yang optimal<br>
+                                • Mengelola lifecycle projek dari perencanaan hingga deployment dan maintenance<br>
+                                • Meningkatkan efisiensi bisnis klien rata-rata 40% melalui digitalisasi proses
+                            </div>
+                            <div class="tech-stack">
+                                <span class="cv-tech-tag">Laravel</span>
+                                <span class="cv-tech-tag">React</span>
+                                <span class="cv-tech-tag">React Native</span>
+                                <span class="cv-tech-tag">Node.js</span>
+                                <span class="cv-tech-tag">Mikrotik</span>
+                                <span class="cv-tech-tag">OLT</span>
+                            </div>
+                        </div>
+
+                        <div class="cv-experience-item">
+                            <div class="item-header">
+                                <div class="item-title">Web Developer</div>
+                                <div class="item-date">2021 - 2022</div>
+                            </div>
+                            <div class="item-company">Basmallah Club</div>
+                            <div class="item-description">
+                                • Mengembangkan sistem kasir berbasis web untuk toko retail Basmallah Sidogiri<br>
+                                • Implementasi fitur manajemen inventory, transaksi penjualan, dan reporting real-time<br>
+                                • Optimasi database untuk menangani ribuan transaksi per hari<br>
+                                • Melatih staff toko dalam penggunaan sistem baru<br>
+                                • Mengurangi waktu transaksi kasir hingga 60% dan meminimalkan human error
+                            </div>
+                            <div class="tech-stack">
+                                <span class="cv-tech-tag">Laravel</span>
+                                <span class="cv-tech-tag">MySQL</span>
+                                <span class="cv-tech-tag">JavaScript</span>
+                                <span class="cv-tech-tag">Bootstrap</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>🎓 PENDIDIKAN</h3>
+                        
+                        <div class="education-item">
+                            <div class="item-header">
+                                <div class="item-title">Diploma I (D1) - Teknik Komputer</div>
+                                <div class="item-date">2020 - 2021</div>
+                            </div>
+                            <div class="item-company">Wearnes Education Center Malang</div>
+                            <div class="item-description">
+                                Fokus pada web development, database management, dan software engineering fundamentals
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>🚀 PROJEK PORTFOLIO</h3>
+                        
+                        <div class="cv-project-item">
+                            <div class="item-header">
+                                <div class="item-title">Custom ERP System</div>
+                            </div>
+                            <div class="item-description">
+                                Aplikasi Enterprise Resource Planning yang mengintegrasikan berbagai modul bisnis (HRD, Finance, Inventory, Sales) dalam satu platform terpadu. Meningkatkan produktivitas perusahaan klien hingga 45%.
+                            </div>
+                            <div class="tech-stack">
+                                <span class="cv-tech-tag">CodeIgniter</span>
+                                <span class="cv-tech-tag">React</span>
+                                <span class="cv-tech-tag">PostgreSQL</span>
+                            </div>
+                        </div>
+
+                        <div class="cv-project-item">
+                            <div class="item-header">
+                                <div class="item-title">Network Infrastructure Setup</div>
+                            </div>
+                            <div class="item-description">
+                                Setup dan konfigurasi jaringan komprehensif untuk perusahaan menggunakan Mikrotik RouterOS untuk routing dan firewall, OLT untuk fiber optic distribution, dan manajemen bandwidth untuk 100+ user concurrent.
+                            </div>
+                            <div class="tech-stack">
+                                <span class="cv-tech-tag">Mikrotik</span>
+                                <span class="cv-tech-tag">OLT</span>
+                                <span class="cv-tech-tag">Fiber Optic</span>
+                                <span class="cv-tech-tag">Network Security</span>
+                            </div>
+                        </div>
+
+                        <div class="cv-project-item">
+                            <div class="item-header">
+                                <div class="item-title">Mobile Delivery Application</div>
+                            </div>
+                            <div class="item-description">
+                                Aplikasi delivery dengan fitur real-time tracking menggunakan GPS, payment gateway integration, push notification, dan rating system untuk driver dan customer.
+                            </div>
+                            <div class="tech-stack">
+                                <span class="cv-tech-tag">React Native</span>
+                                <span class="cv-tech-tag">Node.js</span>
+                                <span class="cv-tech-tag">MongoDB</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h3>⚡ KEAHLIAN TEKNIS</h3>
+                        <div class="cv-skills-grid">
+                            <div class="skill-category">
+                                <h4>Backend Development</h4>
+                                <div class="skill-list">
+                                    <span class="skill-badge">Laravel</span>
+                                    <span class="skill-badge">CodeIgniter</span>
+                                    <span class="skill-badge">Node.js</span>
+                                    <span class="skill-badge">PHP</span>
+                                    <span class="skill-badge">RESTful API</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h4>Frontend Development</h4>
+                                <div class="skill-list">
+                                    <span class="skill-badge">React</span>
+                                    <span class="skill-badge">JavaScript</span>
+                                    <span class="skill-badge">HTML5</span>
+                                    <span class="skill-badge">CSS3</span>
+                                    <span class="skill-badge">Ionic</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h4>Mobile Development</h4>
+                                <div class="skill-list">
+                                    <span class="skill-badge">React Native</span>
+                                    <span class="skill-badge">Ionic Framework</span>
+                                    <span class="skill-badge">PWA</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h4>Network Engineering</h4>
+                                <div class="skill-list">
+                                    <span class="skill-badge">Mikrotik</span>
+                                    <span class="skill-badge">OLT</span>
+                                    <span class="skill-badge">Router Config</span>
+                                    <span class="skill-badge">Network Setup</span>
+                                    <span class="skill-badge">Fiber Optic</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h4>Database & Tools</h4>
+                                <div class="skill-list">
+                                    <span class="skill-badge">MySQL</span>
+                                    <span class="skill-badge">PostgreSQL</span>
+                                    <span class="skill-badge">MongoDB</span>
+                                    <span class="skill-badge">Git</span>
+                                    <span class="skill-badge">Docker</span>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h4>Game Development</h4>
+                                <div class="skill-list">
+                                    <span class="skill-badge">Construct 2</span>
+                                    <span class="skill-badge">HTML5 Games</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <p class="subtitle">D1 Graduate - Wearnes Education Center Malang</p>
-        </div>
-    </header>
 
-    <nav>
-        <ul>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <section id="skills">
-        <div class="container">
-            <h2>// Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card fade-in">
-                    <h3>Backend Development</h3>
-                    <div class="skill-tags">
-                        <span class="tag">Laravel</span>
-                        <span class="tag">CodeIgniter</span>
-                        <span class="tag">Node.js</span>
-                    </div>
-                </div>
-                <div class="skill-card fade-in">
-                    <h3>Frontend Development</h3>
-                    <div class="skill-tags">
-                        <span class="tag">HTML</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">React</span>
-                        <span class="tag">Ionic</span>
-                    </div>
-                </div>
-                <div class="skill-card fade-in">
-                    <h3>Mobile Development</h3>
-                    <div class="skill-tags">
-                        <span class="tag">React Native</span>
-                        <span class="tag">Ionic</span>
-                    </div>
-                </div>
-                <div class="skill-card fade-in">
-                    <h3>Game Development</h3>
-                    <div class="skill-tags">
-                        <span class="tag">Construct 2</span>
-                    </div>
-                </div>
-            </div>
+            <button class="print-btn" onclick="window.print()">🖨️ Cetak CV</button>
         </div>
-    </section>
-
-    <section id="experience">
-        <div class="container">
-            <h2>// Work Experience</h2>
-            <div class="experience-item fade-in">
-                <h3>Angkasa Teknologi Nusantara</h3>
-                <div class="experience-date">2022 - Present</div>
-                <p>Founder & Lead Developer | Mengembangkan berbagai aplikasi custom untuk klien dari berbagai industri. Mengelola tim development dan memastikan kualitas serta ketepatan waktu delivery projek.</p>
-            </div>
-            <div class="experience-item fade-in">
-                <h3>Basmallah Club</h3>
-                <div class="experience-date">2021 - 2022</div>
-                <p>Web Developer | Mengembangkan sistem kasir berbasis web untuk toko retail Basmallah Sidogiri. Sistem mencakup manajemen inventory, transaksi penjualan, dan reporting.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <div class="container">
-            <h2>// Portfolio Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card fade-in">
-                    <h3>Web Kasir Basmallah</h3>
-                    <p>Sistem Point of Sale (POS) berbasis web untuk toko retail Basmallah Sidogiri. Fitur lengkap mulai dari kasir, inventory management, hingga laporan penjualan real-time.</p>
-                    <div class="project-tech">
-                        <span class="tech-badge">Laravel</span>
-                        <span class="tech-badge">MySQL</span>
-                        <span class="tech-badge">JavaScript</span>
-                        <span class="tech-badge">Bootstrap</span>
-                    </div>
-                </div>
-                <div class="project-card fade-in">
-                    <h3>Custom ERP System</h3>
-                    <p>Aplikasi Enterprise Resource Planning untuk klien Angkasa Teknologi Nusantara. Mengintegrasikan berbagai modul bisnis dalam satu platform terpadu.</p>
-                    <div class="project-tech">
-                        <span class="tech-badge">CodeIgniter</span>
-                        <span class="tech-badge">React</span>
-                        <span class="tech-badge">PostgreSQL</span>
-                    </div>
-                </div>
-                <div class="project-card fade-in">
-                    <h3>Mobile Delivery App</h3>
-                    <p>Aplikasi mobile untuk layanan delivery dengan fitur tracking real-time, payment gateway integration, dan push notification.</p>
-                    <div class="project-tech">
-                        <span class="tech-badge">React Native</span>
-                        <span class="tech-badge">Node.js</span>
-                        <span class="tech-badge">MongoDB</span>
-                    </div>
-                </div>
-                <div class="project-card fade-in">
-                    <h3>E-Learning Platform</h3>
-                    <p>Platform pembelajaran online dengan sistem manajemen kursus, video streaming, quiz interaktif, dan progress tracking untuk siswa.</p>
-                    <div class="project-tech">
-                        <span class="tech-badge">Laravel</span>
-                        <span class="tech-badge">Vue.js</span>
-                        <span class="tech-badge">MySQL</span>
-                    </div>
-                </div>
-                <div class="project-card fade-in">
-                    <h3>Restaurant Management System</h3>
-                    <p>Sistem manajemen restoran lengkap dengan modul pemesanan, dapur, kasir, dan inventory. Tersedia versi web dan mobile.</p>
-                    <div class="project-tech">
-                        <span class="tech-badge">CodeIgniter</span>
-                        <span class="tech-badge">Ionic</span>
-                        <span class="tech-badge">MySQL</span>
-                    </div>
-                </div>
-                <div class="project-card fade-in">
-                    <h3>Educational Game</h3>
-                    <p>Game edukasi interaktif untuk anak-anak dengan berbagai mini games yang mendidik. Dikembangkan menggunakan Construct 2.</p>
-                    <div class="project-tech">
-                        <span class="tech-badge">Construct 2</span>
-                        <span class="tech-badge">HTML5</span>
-                        <span class="tech-badge">JavaScript</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="container">
-            <h2>// Get In Touch</h2>
-            <div class="contact-info">
-                <div class="contact-item fade-in">
-                    <div class="contact-icon">📧</div>
-                    <div>
-                        <strong>Email</strong><br>
-                        <span style="color: #888;">khoiruldev@email.com</span>
-                    </div>
-                </div>
-                <div class="contact-item fade-in">
-                    <div class="contact-icon">💼</div>
-                    <div>
-                        <strong>Company</strong><br>
-                        <span style="color: #888;">Angkasa Teknologi Nusantara</span>
-                    </div>
-                </div>
-                <div class="contact-item fade-in">
-                    <div class="contact-icon">📍</div>
-                    <div>
-                        <strong>Location</strong><br>
-                        <span style="color: #888;">Malang, Indonesia</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 M Khoirul Irsyad. Built with passion and caffeine.</p>
-            <p style="margin-top: 10px; color: #00ff88;">System.out.println("Thanks for visiting!");</p>
-        </div>
-    </footer>
+    </div>
 
     <script>
-        // Smooth scroll
+        // Switch between views
+        function switchView(view) {
+            const views = document.querySelectorAll('.view');
+            const buttons = document.querySelectorAll('.toggle-btn');
+            
+            views.forEach(v => v.classList.remove('active'));
+            buttons.forEach(b => b.classList.remove('active'));
+            
+            if (view === 'portfolio') {
+                document.querySelector('.portfolio-view').classList.add('active');
+                buttons[0].classList.add('active');
+            } else {
+                document.querySelector('.cv-view').classList.add('active');
+                buttons[1].classList.add('active');
+                
+                // Animate skill bars when CV is shown
+                setTimeout(() => {
+                    const skillLevels = document.querySelectorAll('.skill-level');
+                    skillLevels.forEach((skill) => {
+                        const width = skill.style.width;
+                        skill.style.width = '0';
+                        setTimeout(() => {
+                            skill.style.width = width;
+                        }, 100);
+                    });
+                }, 100);
+            }
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Smooth scroll for portfolio navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -578,33 +1318,6 @@
                     });
                 }
             });
-        });
-
-        // Fade in on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '0';
-                    entry.target.style.transform = 'translateY(20px)';
-                    
-                    setTimeout(() => {
-                        entry.target.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }, 100);
-                    
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.skill-card, .experience-item, .project-card, .contact-item').forEach(el => {
-            observer.observe(el);
         });
 
         // Active nav on scroll
